@@ -10,15 +10,6 @@ from . import serializers
 from .models import Task
 
 
-class TeamViewSet(viewsets.ModelViewSet):
-    """
-    A simple ViewSet for viewing and editing accounts.
-    """
-    queryset = models.Team.objects.all()
-    serializer_class = serializers.TeamSerializer
-    permission_classes = []
-
-
 class ReportViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing accounts.

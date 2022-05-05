@@ -6,7 +6,7 @@ from django.contrib.admin import display
 
 @admin.register(Worker)
 class WorkerAdmin(admin.ModelAdmin):
-    list_display = ['user_full_name', 'team']
+    list_display = ['user_full_name']
 
     @display(description='Full name')
     def user_full_name(self, obj):

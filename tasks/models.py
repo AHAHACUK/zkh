@@ -3,13 +3,6 @@ from datetime import datetime
 from django.db import models
 
 
-# Create your models here.
-class Team(models.Model):
-
-    def __str__(self):
-        return f'Team #{self.id}'
-
-
 class TaskStatus(models.Model):
     status = models.CharField(max_length=16)
 
@@ -33,7 +26,7 @@ class TaskUrgency(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=30)
     urgency = models.ForeignKey(TaskUrgency, default=0, on_delete=models.SET_DEFAULT)
-    assigned_team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.SET_NULL, related_name='tasks')
+    assigned_worker = models.ForeignKey('accounts.Worker', null=True, blank=True, on_delete=models.SET_NULL, related_name='tasks')
     status = models.ForeignKey(TaskStatus, default=0, on_delete=models.SET_DEFAULT)
     time_created = models.TimeField(default=datetime.now)
     time_updated = models.TimeField(null=True, blank=True)

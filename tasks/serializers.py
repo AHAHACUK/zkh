@@ -6,12 +6,6 @@ from rest_framework import serializers
 from .models import *
 
 
-class TeamSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Team
-        fields = ['url']
-
-
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     urgency = serializers.PrimaryKeyRelatedField(queryset=TaskUrgency.objects.all())
     status = serializers.PrimaryKeyRelatedField(queryset=TaskStatus.objects.all())

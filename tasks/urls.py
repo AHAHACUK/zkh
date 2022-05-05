@@ -8,7 +8,6 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'reports', views.ReportViewSet)
 router.register(r'tasks', views.TaskViewSet)
-router.register(r'teams', views.TeamViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
