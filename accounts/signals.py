@@ -6,8 +6,8 @@ from accounts.models import Dispatcher
 from accounts.models import Worker
 
 groups = {
-    Dispatcher: 'dispatcher',
-    Worker: 'worker'
+    Dispatcher: 'dispatchers',
+    Worker: 'workers'
 }
 
 

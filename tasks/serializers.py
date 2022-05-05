@@ -14,7 +14,7 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Task
-        fields = ['url', 'title', 'urgency', 'assigned_team', 'status', 'time_created', 'time_updated']
+        fields = ['url', 'title', 'urgency', 'assigned_worker', 'status', 'time_created', 'time_updated']
 
 
 class ReportImageSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class ReportImageSerializer(serializers.ModelSerializer):
 
 
 class ReportSerializer(serializers.HyperlinkedModelSerializer):
-    images = ReportImageSerializer(many=True)
+    images = ReportImageSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
         model = Report

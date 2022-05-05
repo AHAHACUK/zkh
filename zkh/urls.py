@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
@@ -23,5 +24,7 @@ from tasks.views import report_image_media_access
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('tasks.urls')),
+    path('api/', include('accounts.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('media/reports/<int:task>/<int:image_index>', report_image_media_access),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

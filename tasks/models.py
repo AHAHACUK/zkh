@@ -7,7 +7,7 @@ class TaskStatus(models.Model):
     status = models.CharField(max_length=16)
 
     class Meta:
-        verbose_name_plural='Task Statuses'
+        verbose_name_plural = 'Task Statuses'
 
     def __str__(self):
         return self.status
@@ -17,7 +17,7 @@ class TaskUrgency(models.Model):
     urgency = models.CharField(max_length=16)
 
     class Meta:
-        verbose_name_plural='Task Urgencies'
+        verbose_name_plural = 'Task Urgencies'
 
     def __str__(self):
         return self.urgency
@@ -28,8 +28,8 @@ class Task(models.Model):
     urgency = models.ForeignKey(TaskUrgency, default=0, on_delete=models.SET_DEFAULT)
     assigned_worker = models.ForeignKey('accounts.Worker', null=True, blank=True, on_delete=models.SET_NULL, related_name='tasks')
     status = models.ForeignKey(TaskStatus, default=0, on_delete=models.SET_DEFAULT)
-    time_created = models.TimeField(default=datetime.now)
-    time_updated = models.TimeField(null=True, blank=True)
+    time_created = models.DateTimeField(auto_now_add=True)
+    time_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
         return f'#{self.id}: {self.title}'
@@ -38,7 +38,7 @@ class Task(models.Model):
 class Report(models.Model):
     task = models.OneToOneField(Task, on_delete=models.CASCADE, related_name='report')
     text = models.TextField()
-    time_created = models.TimeField(default=datetime.now)
+    time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'R#{self.task.id}: {self.title}'
