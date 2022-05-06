@@ -14,7 +14,11 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Task
-        fields = ['url', 'title', 'urgency', 'assigned_worker', 'status', 'time_created', 'time_updated']
+        fields = [
+            'url', 'title', 'urgency',
+            'address_desc', 'address_latitude', 'address_longitude',
+            'assigned_worker', 'status', 'time_created', 'time_updated'
+        ]
 
 
 class ReportImageSerializer(serializers.ModelSerializer):

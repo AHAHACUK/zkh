@@ -26,6 +26,9 @@ class TaskUrgency(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=30)
     urgency = models.ForeignKey(TaskUrgency, default=0, on_delete=models.SET_DEFAULT)
+    address_desc = models.CharField(max_length=64, blank=True, default='')
+    address_latitude = models.FloatField(default=0)
+    address_longitude = models.FloatField(default=0)
     assigned_worker = models.ForeignKey('accounts.Worker', null=True, blank=True, on_delete=models.SET_NULL, related_name='tasks')
     status = models.ForeignKey(TaskStatus, default=0, on_delete=models.SET_DEFAULT)
     time_created = models.DateTimeField(auto_now_add=True)
