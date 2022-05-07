@@ -6,9 +6,16 @@ from rest_framework import serializers
 from .models import *
 
 
+class TaskServiceSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = TaskService
+        fields = ['service']
+
+
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     urgency = serializers.PrimaryKeyRelatedField(queryset=TaskUrgency.objects.all())
     status = serializers.PrimaryKeyRelatedField(queryset=TaskStatus.objects.all())
+    service = TaskServiceSerializer(read_only=True, many=True)
     time_created = serializers.ReadOnlyField()
     time_updated = serializers.ReadOnlyField()
 
@@ -17,8 +24,9 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             'url', 'title', 'urgency',
             'address_desc', 'address_latitude', 'address_longitude',
-            'assigned_worker', 'status', 'time_created', 'time_updated'
+            'assigned_worker', 'status', 'service', 'time_created', 'time_updated'
         ]
+
 
 
 class ReportImageSerializer(serializers.ModelSerializer):

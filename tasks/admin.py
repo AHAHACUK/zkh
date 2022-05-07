@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import display
 
-from .models import Task
+from .models import Task, TaskService
 from .models import Report
 from .models import TaskUrgency
 from .models import TaskStatus
@@ -26,6 +26,11 @@ class ReportAdmin(admin.ModelAdmin):
 @admin.register(TaskUrgency)
 class TaskUrgencyAdmin(admin.ModelAdmin):
     list_display = ['id', 'urgency']
+    ordering = ['id']
+
+@admin.register(TaskService)
+class TaskServiceAdmin(admin.ModelAdmin):
+    list_display = ['id', 'service']
     ordering = ['id']
 
 
