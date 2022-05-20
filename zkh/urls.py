@@ -16,11 +16,18 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.http import FileResponse
 from django.urls import path
 from django.urls import include
 from rest_framework.authtoken.views import obtain_auth_token
 
 from tasks.views import report_image_media_access
+
+
+def get_mobile_app(request):
+    file = open('mobileapp/zkh.apk', 'rb')
+    return FileResponse(file, as_attachment=True)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +35,6 @@ urlpatterns = [
     path('api/', include('accounts.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api-token-auth/', obtain_auth_token),
+    path('app', get_mobile_app),
     path('media/reports/<int:task>/<int:image_index>', report_image_media_access),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
