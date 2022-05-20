@@ -32,7 +32,7 @@ class TaskService(models.Model):
         return self.service
 
 class Task(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.TextField()
     urgency = models.ForeignKey(TaskUrgency, default=0, on_delete=models.SET_DEFAULT)
     address_desc = models.CharField(max_length=64, blank=True, default='')
     address_latitude = models.FloatField(default=0)
@@ -48,7 +48,7 @@ class Task(models.Model):
 
 
 class Report(models.Model):
-    task = models.OneToOneField(Task, on_delete=models.CASCADE, related_name='report')
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='reports')
     text = models.TextField()
     time_created = models.DateTimeField(auto_now_add=True)
 
