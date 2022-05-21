@@ -22,6 +22,7 @@ class TaskUrgency(models.Model):
     def __str__(self):
         return self.urgency
 
+
 class TaskService(models.Model):
     service = models.CharField(max_length=255)
 
@@ -30,6 +31,7 @@ class TaskService(models.Model):
 
     def __str__(self):
         return self.service
+
 
 class Task(models.Model):
     title = models.TextField()
@@ -40,6 +42,8 @@ class Task(models.Model):
     assigned_worker = models.ForeignKey('accounts.Worker', null=True, blank=True, on_delete=models.SET_NULL, related_name='tasks')
     status = models.ForeignKey(TaskStatus, default=0, on_delete=models.SET_DEFAULT)
     service = models.ManyToManyField(TaskService)
+    time_assigned = models.DateTimeField(blank=True, null=True)
+    time_closed = models.DateTimeField(blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
     time_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 

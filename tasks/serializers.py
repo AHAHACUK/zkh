@@ -53,7 +53,8 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = [
             'url', 'id', 'title', 'urgency', 'status',
             'address_desc', 'address_latitude', 'address_longitude',
-            'assigned_worker_id', 'assigned_worker_name', 'time_created', 'time_updated'
+            'assigned_worker_id', 'assigned_worker_name',
+            'time_assigned', 'time_closed', 'time_created', 'time_updated'
         ]
 
 

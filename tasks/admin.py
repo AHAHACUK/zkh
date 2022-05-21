@@ -10,7 +10,8 @@ from accounts.models import Worker
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['full_title', 'urgency', 'assigned_worker', 'status', 'time_created', 'time_updated']
+    list_display = ['full_title', 'urgency', 'assigned_worker', 'status',
+                    'time_assigned', 'time_closed', 'time_created', 'time_updated']
     list_filter = ['status']
 
     @display(description='Title')
